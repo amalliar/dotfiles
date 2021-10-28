@@ -7,6 +7,7 @@ alias l='ls --color=auto -lha --group-directories-first'
 alias tree='tree -C'
 alias valgrind='valgrind --leak-check=full'
 alias norminette='~/.scripts/colorised_norm.sh'
+alias ip='ip --color=auto'
 
 # Less colors for man pages.
 export LESS=-R
@@ -31,6 +32,7 @@ alias rms='~/.scripts/rms.sh'
 alias mk='make -j8 --output-sync=recurse --no-print-directory'
 alias cheat='~/.scripts/cht.sh'
 alias zshrc='$EDITOR ~/.zshrc'
+alias vimrc='$EDITOR ~/.vimrc'
 alias hist='history'
 alias ytdl='youtube-dl -x --audio-format mp3 --embed-thumbnail --audio-quality 320K'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

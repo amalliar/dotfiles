@@ -49,3 +49,12 @@ silent execute "!echo -ne '\e[1 q'"
 
 " Search for files recursively from the current PWD
 set path=.,**
+
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
