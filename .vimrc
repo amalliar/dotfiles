@@ -33,16 +33,10 @@ if (has("termguicolors"))
 endif
 
 " Set Vim colourscheme.
-colorscheme onedark
 syntax on
-
-" Highlight trailing whitespace.
-"highlight ExtraWhitespace ctermbg=red guibg=#ff7b86
-"match ExtraWhitespace /\s\+$\|\s+\s{1}/
-
-" Highlight strings over 80 characters long.
-"highlight MoreThan80 ctermbg=red guibg=#ff7b86
-":2match MoreThan80 /\%81v.\+/
+"colorscheme onedark
+colorscheme gruvbox
+set background=dark
 
 " Set block cursor upon entry.
 silent execute "!echo -ne '\e[1 q'"
