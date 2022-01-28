@@ -134,8 +134,10 @@ fpath=(~/.zsh/ $fpath)
 # If tmux is executable, X is running, and not inside a tmux session, then try to attach.
 # If attachment fails, start a new session
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
-  [ -z "${TMUX}" ] && { tmux attach || tmux; } >/dev/null 2>&1
+  [ -z "${TMUX}" ] && { tmux attach || tmuxp load amalliar; } >/dev/null 2>&1
 fi
+
+eval "$(_TMUXP_COMPLETE=source_zsh tmuxp)"
 
 # Fish-like syntax highlighting, must be at the end.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
