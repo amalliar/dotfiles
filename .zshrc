@@ -128,6 +128,9 @@ fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
+# Fetch debug symbols without having to install the appropriate debug package. 
+export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
+
 # cht.sh tab completion
 fpath=(~/.zsh/ $fpath)
 

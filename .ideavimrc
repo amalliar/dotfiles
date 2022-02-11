@@ -1,0 +1,45 @@
+set clipboard=unnamedplus,ideaput " Copy and cut to system clipboard.
+
+" Change cursor shape in different modes.
+let &t_SI = "\e[5 q" " SI = INSERT mode
+let &t_SR = "\e[3 q" " SR = REPLACE mode
+let &t_EI = "\e[1 q" " EI = NORMAL mode
+
+" Fast toggling between modes.
+set ttimeout
+set ttimeoutlen=1
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+set ttyfast
+
+" Set automatic toggling between line number modes.
+set number relativenumber
+set cul
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+set hlsearch " Highlight all search pattern matches.
+
+" Use 24-bit (true-color) mode in Vim.
+if (has("termguicolors"))
+	set termguicolors
+endif
+
+syntax on " enable syntax highlighting
+
+" Set block cursor upon entry.
+silent execute "!echo -ne '\e[1 q'"
+
+" Search for files recursively from the current PWD
+set path=.,**
+
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
