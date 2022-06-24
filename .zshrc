@@ -29,7 +29,6 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -56,6 +55,18 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
+
+# Automaticaly cd to current dir on ranger exit.
+ranger_cd() {
+    tempfile="$(mktemp -t tmp.XXXXXX)"
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi  
+    rm -f -- "$tempfile"
+}
+bindkey -s '^O' 'ranger_cd\n'
 
 # Suggest commands as you type based on history and completions.
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -117,7 +128,8 @@ then
     char          # Prompt character
   )
   SPACESHIP_USER_SHOW=needed
-  SPACESHIP_DIR_TRUNC=4
+  SPACESHIP_DIR_TRUNC=3
+  SPACESHIP_DIR_TRUNC_REPO=false
   SPACESHIP_EXIT_CODE_SHOW=true
   SPACESHIP_EXIT_CODE_SYMBOL=""
   SPACESHIP_CHAR_SYMBOL="❯ "
@@ -134,13 +146,11 @@ export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 # cht.sh tab completion
 fpath=(~/.zsh/ $fpath)
 
-# If tmux is executable, X is running, and not inside a tmux session, then try to attach.
-# If attachment fails, start a new session
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ]; then
-  [ -z "${TMUX}" ] && { tmux attach || tmuxp load amalliar; } >/dev/null 2>&1
-fi
-
 eval "$(_TMUXP_COMPLETE=source_zsh tmuxp)"
+
+# fzf key-bindings and completion.
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Fish-like syntax highlighting, must be at the end.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
