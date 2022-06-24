@@ -1,9 +1,9 @@
 [submodule ".vim/pack/default/start/vim-gutentags"]
 	path = .vim/pack/default/start/vim-gutentags
-	url = git@github.com:ludovicchabant/vim-gutentags.git
+	url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule ".vim/pack/default/start/vim-lastplace"]
 	path = .vim/pack/default/start/vim-lastplace
-	url = git://github.com/farmergreg/vim-lastplace.git
+	url = https://github.com/farmergreg/vim-lastplace.git
 [submodule ".vim/pack/default/start/vim-polyglot"]
 	path = .vim/pack/default/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
