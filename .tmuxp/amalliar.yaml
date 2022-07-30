@@ -1,20 +1,20 @@
 session_name: amalliar
-start_directory: $HOME
 windows:
-# htop full screen
-- window_name: htop
-  layout: cdbe,192x48,0,0,1
+- layout: cdbe,192x48,0,0,1
+  options:
+    automatic-rename: 'on'
   panes:
-  - focus: true
+  - focus: 'true'
     shell_command: htop
+  start_directory: /home/amalliar
+  window_name: htop
+- focus: 'true'
+  layout: 3a82,213x48,0,0{107x48,0,0,2,105x48,108,0[105x24,108,0,3,105x23,108,25,4]}
   options:
-    automatic-rename: on
-# zsh vertical-split
-- window_name: zsh
-  layout: 8c0a,192x48,0,0{96x48,0,0,2,95x48,97,0,3}
-  focus: true
+    automatic-rename: 'on'
   panes:
-  - focus: true
+  - focus: 'true'
   - pane
-  options:
-    automatic-rename: on
+  - pane
+  start_directory: /home/amalliar
+  window_name: zsh
