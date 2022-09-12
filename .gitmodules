@@ -7,3 +7,6 @@
 [submodule ".vim/pack/default/start/vim-polyglot"]
 	path = .vim/pack/default/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule ".vim/pack/default/start/vim-easymotion"]
+	path = .vim/pack/default/start/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion.git
