@@ -10,3 +10,6 @@
 [submodule ".vim/pack/default/start/vim-easymotion"]
 	path = .vim/pack/default/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule ".config/kitty/themes/kitty-gruvbox-theme"]
+	path = .config/kitty/themes/kitty-gruvbox-theme
+	url = https://github.com/wdomitrz/kitty-gruvbox-theme.git
