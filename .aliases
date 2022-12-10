@@ -1,13 +1,19 @@
 # Colorization of CLI outputs.
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
-alias ls='ls --color=auto --group-directories-first'
-alias ll='ls --color=auto -lh --group-directories-first'
-alias l='ls --color=auto -lha --group-directories-first'
+#alias ls='ls --color=auto --group-directories-first'
+#alias ll='ls --color=auto --group-directories-first -lh'
+#alias l='ls --color=auto --group-directories-first -lha'
+alias ls='exa --group-directories-first'
+alias lll='exa --group-directories-first -lgbT@'
+alias ll='exa --group-directories-first -lgb@'
+alias l='exa --group-directories-first -lgbaa@'
 alias tree='tree -C'
 alias valgrind='valgrind --leak-check=full'
 alias norminette='~/.scripts/colorised_norm.sh'
 alias ip='ip --color=auto'
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
 
 # Less colors for man pages.
 export LESS=-R
@@ -20,7 +26,7 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 
 # general shortcuts.
-exclude_list="'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/home/*','/lost+found'"
+exclude_list="'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/home/*','/lost+found','/opt/ssd'"
 alias rsync-backup="sudo rsync -aaxv --delete --exclude={$exclude_list} / /home/.backup"
 alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ /"
 alias vi='vim'
@@ -38,3 +44,5 @@ alias ytdl='youtube-dl -x --audio-format mp3 --embed-thumbnail --audio-quality 3
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ranger='ranger-cd'
 alias pacman-cleanup='sudo pacman -Rns $(pacman -Qdtq)'
+alias dmesg='sudo dmesg -eHTw --level=emerg,alert,crit,err,warn'
+alias journalctl='journalctl -b'
