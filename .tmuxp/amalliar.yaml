@@ -1,20 +1,14 @@
 session_name: amalliar
 windows:
-- layout: cdbe,192x48,0,0,1
-  options:
-    automatic-rename: 'on'
+- layout: b25e,213x51,0,0,1
   panes:
   - focus: 'true'
-    shell_command: htop
+    shell_command: btop
   start_directory: /home/amalliar
-  window_name: htop
 - focus: 'true'
-  layout: 3a82,213x48,0,0{107x48,0,0,2,105x48,108,0[105x24,108,0,3,105x23,108,25,4]}
-  options:
-    automatic-rename: 'on'
+  layout: 0800,213x51,0,0{107x51,0,0,3,105x51,108,0,2}
   panes:
   - focus: 'true'
-  - pane
-  - pane
+    shell_command: clear
+  - shell_command: clear
   start_directory: /home/amalliar
-  window_name: zsh
