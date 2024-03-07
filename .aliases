@@ -1,48 +1,57 @@
 # Colorization of CLI outputs.
-alias diff='diff --color=auto'
-alias grep='grep --color=auto'
+#alias diff='diff --color=auto'
+#alias grep='grep --color=auto'
 #alias ls='ls --color=auto --group-directories-first'
 #alias ll='ls --color=auto --group-directories-first -lh'
 #alias l='ls --color=auto --group-directories-first -lha'
-alias ls='exa --group-directories-first'
-alias lll='exa --group-directories-first -lgbT@'
-alias ll='exa --group-directories-first -lgb@'
-alias l='exa --group-directories-first -lgbaa@'
+alias ls='eza --group-directories-first --hyperlink'
+alias lll='eza --group-directories-first --hyperlink -lgbTo@L3'
+alias ll='eza --group-directories-first --hyperlink -lgbo@'
+alias l='eza --group-directories-first --hyperlink -lgboaa@'
 alias tree='tree -C'
 alias valgrind='valgrind --leak-check=full'
 alias norminette='~/.scripts/colorised_norm.sh'
 alias ip='ip --color=auto'
-alias setclip="xclip -selection c"
-alias getclip="xclip -selection c -o"
+alias bat='bat --theme=gruvbox-dark'
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection c -o'
+
+# kitty aliases
+[ "$TERM" = "xterm-kitty" ] && alias setclip='kitty +kitten clipboard'
+[ "$TERM" = "xterm-kitty" ] && alias getclip='kitty +kitten clipboard --get-clipboard'
+[ "$TERM" = "xterm-kitty" ] && alias icat='kitty +kitten icat "$@"'
+[ "$TERM" = "xterm-kitty" ] && alias grep='kitty +kitten hyperlinked_grep --smart-case "$@"'
+[ "$TERM" = "xterm-kitty" ] && alias diff='kitty +kitten diff "$@"'
+[ "$TERM" = "xterm-kitty" ] && alias ssh='kitty +kitten ssh "$@"'
 
 # Less colors for man pages.
 export LESS=-R
-export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
+export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
+export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
 export LESS_TERMCAP_me=$'\e[0m'           # end mode
 export LESS_TERMCAP_se=$'\e[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
-export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
+export GROFF_NO_SGR=1                     # for konsole and gnome-terminal
 
 # general shortcuts.
 exclude_list="'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/home/*','/lost+found','/opt/ssd'"
 alias rsync-backup="sudo rsync -aaxv --delete --exclude={$exclude_list} / /home/.backup"
-alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ /"
+alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ / && echo '>>> RSYNC-RESTORE FINISHED, REINSTALL GRUB ANG REGENERATE CONFIG!!'"
 alias vi='vim'
-alias su='su -l'
-alias sudo='sudo '
 alias info='info --vi-keys'
 alias :q='exit'
-alias rms='~/.scripts/rms.sh'
+alias interjection='~/.scripts/interjection.sh'
 alias mk='make -j8 --output-sync=recurse --no-print-directory'
 alias cheat='~/.scripts/cht.sh'
 alias zshrc='$EDITOR ~/.zshrc'
 alias vimrc='$EDITOR ~/.vimrc'
 alias hist='history 1'
-alias ytdl='youtube-dl -x --audio-format mp3 --embed-thumbnail --audio-quality 320K'
+alias yt-dlp='yt-dlp -x --audio-format mp3 --embed-thumbnail --audio-quality 320K'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias ranger='ranger-cd'
-alias pacman-cleanup='sudo pacman -Rns $(pacman -Qdtq)'
+alias pacman-mirrors='sudo reflector --sort rate --country Russia --save /etc/pacman.d/mirrorlist'
+alias pacman-cleanup='sudo pacman -Qtdq | sudo ifne pacman -Rns -'
 alias dmesg='sudo dmesg -eHTw --level=emerg,alert,crit,err,warn'
 alias journalctl='journalctl -b'
+alias wireshark='nohup wireshark -style Adwaita-Dark </dev/null >/dev/null 2>&1 &'

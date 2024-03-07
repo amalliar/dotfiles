@@ -99,9 +99,18 @@ export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 # cht.sh tab completion
 fpath=(~/.zsh/ $fpath)
 
+# pip scripts
+path=($HOME/.local/bin $path)
+
 # fzf key-bindings and completion.
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# eza completions
+export FPATH="$HOME/.zsh/eza/completions/zsh:$FPATH"
+
+# Random colorscript from /opt/shell-color-scripts/colorscripts, the first one is always skipped (00default)
+colorscript --random
 
 # Fish-like syntax highlighting, must be at the end.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

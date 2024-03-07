@@ -20,7 +20,10 @@ augroup numbertoggle
 	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-set hlsearch " Highlight all search pattern matches.
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
 " Use 24-bit (true-color) mode in Vim.
 if (has("termguicolors"))

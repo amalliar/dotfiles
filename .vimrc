@@ -25,7 +25,10 @@ augroup numbertoggle
 augroup END
 
 " Highlight all search pattern matches.
+set incsearch
 set hlsearch
+set ignorecase
+set smartcase
 
 " Use 24-bit (true-color) mode in Vim.
 if (has("termguicolors"))
