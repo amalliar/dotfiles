@@ -1,6 +1,6 @@
 # Colorization of CLI outputs.
-#alias diff='diff --color=auto'
-#alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
 #alias ls='ls --color=auto --group-directories-first'
 #alias ll='ls --color=auto --group-directories-first -lh'
 #alias l='ls --color=auto --group-directories-first -lha'
@@ -20,8 +20,8 @@ alias getclip='xclip -selection c -o'
 [ "$TERM" = "xterm-kitty" ] && alias setclip='kitty +kitten clipboard'
 [ "$TERM" = "xterm-kitty" ] && alias getclip='kitty +kitten clipboard --get-clipboard'
 [ "$TERM" = "xterm-kitty" ] && alias icat='kitty +kitten icat "$@"'
-[ "$TERM" = "xterm-kitty" ] && alias grep='kitty +kitten hyperlinked_grep --smart-case "$@"'
 [ "$TERM" = "xterm-kitty" ] && alias diff='kitty +kitten diff "$@"'
+[ "$TERM" = "xterm-kitty" ] && alias grep='kitty +kitten hyperlinked_grep --smart-case "$@"'
 [ "$TERM" = "xterm-kitty" ] && alias ssh='kitty +kitten ssh "$@"'
 
 # Less colors for man pages.
