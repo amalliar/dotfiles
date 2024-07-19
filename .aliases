@@ -38,7 +38,7 @@ export GROFF_NO_SGR=1                     # for konsole and gnome-terminal
 # general shortcuts.
 exclude_list="'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/home/*','/lost+found','/opt/ssd'"
 alias rsync-backup="sudo rsync -aaxv --delete --exclude={$exclude_list} / /home/.backup"
-alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ / && echo '>>> RSYNC-RESTORE FINISHED, REINSTALL GRUB ANG REGENERATE CONFIG!!'"
+alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ / && sudo grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias vi='vim'
 alias info='info --vi-keys'
 alias :q='exit'
@@ -54,7 +54,8 @@ alias vimrc='$EDITOR ~/.vimrc'
 alias hist='history 1'
 alias yt-dlp='yt-dlp -x --audio-format opus --audio-quality 0 --embed-thumbnail --embed-metadata'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias pacman-mirrors='sudo reflector --sort rate --country Russia --save /etc/pacman.d/mirrorlist'
+# note: use mirrors closest to the VPN server location.
+alias pacman-mirrors='sudo reflector --sort rate --country Finland --save /etc/pacman.d/mirrorlist'
 alias pacman-cleanup='sudo pacman -Qtdq | sudo ifne pacman -Rns -'
 alias dmesg='sudo dmesg -eHTw --level=emerg,alert,crit,err,warn'
 alias journalctl='journalctl -b'
