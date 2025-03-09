@@ -36,7 +36,7 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export GROFF_NO_SGR=1                     # for konsole and gnome-terminal
 
 # general shortcuts.
-exclude_list="'/dev/*','/proc/*','/sys/*','/tmp/*','/run/*','/mnt/*','/media/*','/home/*','/lost+found','/opt/ssd'"
+exclude_list="'/dev','/proc','/sys','/tmp','/run','/mnt','/media','/home','/lost+found','/opt/ssd','/swapfile'"
 alias rsync-backup="sudo rsync -aaxv --delete --exclude={$exclude_list} / /home/.backup"
 alias rsync-restore="sudo rsync -aaxv --delete --exclude={$exclude_list} /home/.backup/ / && sudo grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB && sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias vi='vim'
@@ -47,7 +47,9 @@ alias interjection='~/.scripts/interjection.sh'
 alias ffmpeg-cover='~/.scripts/ffmpeg-cover-all.sh'
 alias ffmpeg-uncover='~/.scripts/ffmpeg-uncover-all.sh'
 alias ffmpeg-concat='~/.scripts/ffmpeg-concat-all.sh'
+alias ffmpeg-toflac='parallel -j12 ffmpeg -i {} -compression_level 12 {.}.flac ::: *.ape *.wav'
 alias mk='make -j8 --output-sync=recurse --no-print-directory'
+alias clang-format="clang-format -style='{IndentWidth: 4}' -i **/*.(c|h)"
 alias cheat='~/.scripts/cht.sh'
 alias zshrc='$EDITOR ~/.zshrc'
 alias vimrc='$EDITOR ~/.vimrc'
@@ -55,7 +57,7 @@ alias hist='history 1'
 alias yt-dlp='yt-dlp -x --audio-format opus --audio-quality 0 --embed-thumbnail --embed-metadata'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # note: use mirrors closest to the VPN server location.
-alias pacman-mirrors='sudo reflector --sort rate --country Finland --save /etc/pacman.d/mirrorlist'
+alias pacman-mirrors='sudo reflector --sort rate --country Russia --latest 4 --save /etc/pacman.d/mirrorlist'
 alias pacman-cleanup='sudo pacman -Qtdq | sudo ifne pacman -Rns -'
 alias dmesg='sudo dmesg -eHTw --level=emerg,alert,crit,err,warn'
 alias journalctl='journalctl -b'
